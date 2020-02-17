@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor View</title>
+</head>
+<body>
+    <form action="{% url 'actor:view' %}" method="post">
+        {% csrf_token %}
+        <p>{{ a.name }}</p>
+        <p>{{ a.dob }}</p>
+        <p>{{ a.nationality }}</p>
+        <input type="submit" value="create">
+    </form>
+</body>
+</html>
