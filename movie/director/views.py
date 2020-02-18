@@ -17,6 +17,7 @@ def add(request):
 
 
 def edit(request):
+    director = Director.objects.get()
     return render(request, 'director/edit.html')
 
 
