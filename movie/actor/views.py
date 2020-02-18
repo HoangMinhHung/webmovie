@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from .forms import ActorForm
+from .models import Actor
 # Create your views here.
 
 
-class ActorView(View):
+class AddActor(View):
     def get(self, request):
         a = ActorForm()
-        return render(request, "actor/actor_view.html", {'a': a})
+        return render(request, "actor/add_actor.html", {'a': a})
 
     def post(self, request):
         g = ActorForm(request.POST)
@@ -18,4 +19,9 @@ class ActorView(View):
         else:
             return HttpResponse("them that bai")
 
+
+class ViewActor(View):
+    def get(self, request, actor_id):
+        actor = Actor.objects.get(pk=actor_id)
+        return render(request, 'actor/view_actor.html', {'a': actor})
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor View</title>
+    <style>
+        .add_actor {
+            background-color: midnightblue;
+            margin-top: 150px;
+            margin-left: 500px;
+            margin-right: 500px;
+            color: #fff9fb;
+        }
+    </style>
+</head>
+<body>
+    <div class="add_actor" style="border: midnightblue; border-style:solid; ">
+        <center>
+            <form action="{% url 'actor:add' %}" method="post">
+                {% csrf_token %}
+                <label for="name">ActorName:</label>
+                <p id="name">{{ a.name }}</p>
+                Dob:           <p id="dob">{{ a.dob }}</p>
+                Nationality:   <p id="nationality">{{ a.nationality }}</p>
+                <input type="submit" value="ADD">
+            </form>
+        </center>
+    </div>
+</body>
+</html>
