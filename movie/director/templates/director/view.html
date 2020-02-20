@@ -16,8 +16,8 @@
                             <a href="{{director.id}}"> {{director.name}} <span class="badge badge-warning">Hot</span></a><br>
                             <span>Ngay sinh: {{director.dob}}</span><br>
                             <span>Quoc tich: {{director.nationality}}</span><br>
-                            <button type="button" class="btn btn-info"><a href="{% url 'edit' director.id %}"></a>Sua</button>
-                            <button type="button" class="btn btn-danger"><a href="{% url 'edit' director.id %}"></a>Xoa</button>
+                            <a href="edit/{{director.id}}"><button type="button" class="btn btn-info" >Sua</button></a>
+                            <a href="delete/{{director.id}}" onclick="return confirm('Ban co chac chan xoa dao dien nay?')"><button type="button" class="btn btn-danger" >Xoa</button></a>
                         </p>
                     </div>
                 </div>
