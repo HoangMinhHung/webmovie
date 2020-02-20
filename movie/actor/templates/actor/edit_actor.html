@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Them moi Actor</title>
+    <title>Edit Actor</title>
 </head>
 <body>
     <div class="container">
@@ -12,15 +12,15 @@
         {% csrf_token %}
         <div class="form-group">
           <label for="{{form.name.id_for_label}}">Ten</label>
-          <input type="text" required name="name"  id="{{form.name.id_for_label}}" class="form-control" placeholder="Nhap ten">
+          <input type="text" required name="name"  id="{{form.name.id_for_label}}" class="form-control" placeholder="Nhap ten" value="{{actor.name}}">
         </div>
         <div class="form-group">
           <label for="{{form.dob.id_for_label}}">Ngay thang nam sinh</label>
-          <input type="date" required name="dob" id="{{form.dob.id_for_label}}" class="form-control">
+          <input type="date" required name="dob" id="{{form.dob.id_for_label}}" class="form-control" value="{{actor.dob |date:'Y-m-d'}}">
         </div>
         <div class="form-group">
           <label for="{{form.nationality.id_for_label}}">Quoc tich</label>
-          <input type="text" required name="nationality" id="{{form.nationality.id_for_label}}" class="form-control" placeholder="Nhap quoc tich">
+          <input type="text" required name="nat ionality" id="{{form.nationality.id_for_label}}" class="form-control" placeholder="Nhap quoc tich" value="{{actor.nationality}}">
         </div>
             <button class="btn btn-primary" type="submit">Them moi</button>
     </form>

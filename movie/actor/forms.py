@@ -3,7 +3,7 @@ from django import forms
 
 
 class ActorForm(forms.ModelForm):
-    dob = forms.DateField(input_formats=['%d/%m/%Y'])
+    # dob = forms.DateField(input_formats=['%d/%m/%Y'])
 
     class Meta:
         model = Actor
