@@ -46,5 +46,10 @@ def detail(request, pk):
 
 
 def search(request):
-    directors = Director.objects.filter(name__contains="")
+    if request.method == "POST":
+        form = request.POST
+        # if form.is_valid:
+        keyword = form["search"]
+        directors = Director.objects.filter(name__contains=keyword)
+        return render(request, 'director/view.html', {"directors": directors})
 
