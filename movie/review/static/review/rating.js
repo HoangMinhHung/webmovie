@@ -12,6 +12,9 @@ var SetRatingStar = function() {
 
 $star_rating.on('click', function() {
   $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+  var star_count = parseInt($(this).data('rating'));
+  $('input[name="get_star"]').val(star_count);
+  $('#star_form').submit()
   return SetRatingStar();
 });
 
@@ -19,3 +22,4 @@ SetRatingStar();
 $(document).ready(function() {
 
 });
+

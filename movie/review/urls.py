@@ -3,5 +3,5 @@ from .views import RatingMovie
 from .models import Review
 
 urlpatterns = [
-    path('/', RatingMovie.as_view(), name='rating'),
+    path('rating/', RatingMovie.as_view(), name='rating'),
 ]
