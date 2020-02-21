@@ -1,9 +1,9 @@
 from django.db import models
-from user.models import MovieUser
 from director.models import Director
 from actor.models import Actor
 from category.models import Category
 from type.models import Type
+from user.models import MovieUser
 # Create your models here.
 
 

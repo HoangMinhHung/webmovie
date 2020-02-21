@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'actor',
     'director',
     'category',
+    'type',
     'review',
     'type',
 ]
