@@ -3,6 +3,7 @@ from movie.user.models import MovieUser
 from movie.director.models import Director
 from movie.actor.models import Actor
 from movie.category.models import Category
+from movie.type.models import Type
 # Create your models here.
 
 
@@ -13,8 +14,8 @@ class Movie(models.Model):
     image_url = models.CharField(max_length=255)
     director = models.ForeignKey(Director, on_delete=models.SET_NULL(), null=True)
     actor = models.ForeignKey(Actor, on_delete=models.SET_NULL(), null=True)
-    category = models.ForeignKey(Actor, on_delete=models.SET_NULL(), null=True)
-    # type =
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL(), null=True)
+    type = models.ForeignKey(Type, on_delete=models.SET_NULL(), null=True)
 
 
 class Review(models.Model):
