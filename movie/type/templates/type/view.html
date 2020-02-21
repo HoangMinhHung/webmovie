@@ -1,0 +1,34 @@
+{% extends 'user/base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <form action="{% url 'search' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." aria-describedby="button-search" name="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-sm-3">
+            <div class="card" style="width: 15rem;">
+                <div class="card-body">
+                    <p class="card-text">
+                        <a href="{{category.id}}"> {{category.name}} <span class="badge badge-warning">Hot</span></a><br>
+                        <span>Mo ta: {{category.description}}</span><br>
+                        <a href="edit/{{category.id}}"><button type="button" class="btn btn-info" >Sua</button></a>
+                        <a href="delete/{{category.id}}" onclick="return confirm('Ban co chac chan xoa the loai nay?')"><button type="button" class="btn btn-danger" >Xoa</button></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

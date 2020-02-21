@@ -28,6 +28,7 @@ urlpatterns = [
     path('director/', include('director.urls')),
     path('category/', include('category.urls')),
     path('review/', include('review.urls')),
+    path('type/', include('type.urls')),
 ]
 
 if settings.DEBUG:
