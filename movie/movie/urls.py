@@ -27,6 +27,7 @@ urlpatterns = [
     path('actor/', include('actor.urls')),
     path('director/', include('director.urls')),
     path('category/', include('category.urls')),
+    path('review/', include('review.urls')),
 ]
 
 if settings.DEBUG:
