@@ -16,7 +16,11 @@
         <span class="fa fa-star-o" data-rating="3"></span>
         <span class="fa fa-star-o" data-rating="4"></span>
         <span class="fa fa-star-o" data-rating="5"></span>
-        <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+          <input type="hidden" name="show_star" class="rating-value" value="0">
+          <form id="star_form" action="#" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="get_star" class="rating-value" value="0">
+          </form>
       </div>
     </div>
   </div>
