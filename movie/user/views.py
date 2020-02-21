@@ -20,9 +20,9 @@ def register(request):
 
 def profile(request):
     if request.method == "POST":
-        # update and send message
+        # valid update form and send message
         pass
     else:
-        # user update and profile update
+        # empty user update and profile update
         pass
     return render(request, 'user/profile.html')
