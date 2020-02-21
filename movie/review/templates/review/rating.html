@@ -3,8 +3,11 @@
 {% block load_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'review/rating.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-{% endblock %}
+{% endblock load_css %}
+
+
 {% block content %}
+    <div class="container">
   <div class="row">
     <div class="col-lg-12">
       <div class="star-rating">
@@ -40,10 +43,12 @@
 {#        <input type="hidden" name="whatever3" class="rating-value" value="4.1">#}
 {#      </div>#}
 {#    </div>#}
-{#  </div>#}
+  </div>
+
 {% endblock content %}
 
 {% block load_js %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{% static 'review/rating.js' %}"></script>
 {% endblock %}
+
