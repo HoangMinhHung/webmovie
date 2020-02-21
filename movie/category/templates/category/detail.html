@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{category.name}}</title>
-</head>
-<body>
-<div class="container">
+{% extends 'user/base.html' %}
+{% block content %}
     <h3>{{category.name}}</h3>
     <p>Mo ta: {{category.description}}</p>
-</div>
-</body>
-</html>
+{% endblock %}
