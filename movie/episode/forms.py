@@ -5,4 +5,4 @@ from film.models import Movie
 class EpisodeAddForm(forms.ModelForm):
     class Meta:
         model = Episode
-        fields = ['name', 'link',]
+        fields = ['name', 'episode_url',]
