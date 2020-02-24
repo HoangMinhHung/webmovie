@@ -1,6 +1,6 @@
 from django import forms
 
-from movie.comment.models import Comment
+from comment.models import Comment
 
 
 class CommentForm(forms.ModelForm):
