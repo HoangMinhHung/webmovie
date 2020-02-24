@@ -17,7 +17,11 @@
         <span class="fa fa-star-o" data-rating="3"></span>
         <span class="fa fa-star-o" data-rating="4"></span>
         <span class="fa fa-star-o" data-rating="5"></span>
-        <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+          <input type="hidden" name="show_star" class="rating-value" value="0">
+          <form id="star_form" action="#" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="get_star" class="rating-value" value="0">
+          </form>
       </div>
     </div>
   </div>
@@ -44,15 +48,24 @@
 {#        <input type="hidden" name="whatever3" class="rating-value" value="4.1">#}
 {#      </div>#}
 {#    </div>#}
+<<<<<<< HEAD
 {#  </div>#}
 <<<<<<< HEAD
     </div>
 {% endblock content %}
 =======
+=======
+  </div>
+
+>>>>>>> 8f9c1b29df65a2863607feea4ec3820b550e9260
 {% endblock content %}
 
 {% block load_js %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{% static 'review/rating.js' %}"></script>
 {% endblock %}
+<<<<<<< HEAD
 >>>>>>> --no-commit
+=======
+
+>>>>>>> 8f9c1b29df65a2863607feea4ec3820b550e9260
