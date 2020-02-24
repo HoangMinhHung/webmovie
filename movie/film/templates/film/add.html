@@ -160,8 +160,9 @@
 
                                 <div class="related-widget-wrapper">
                                     <select  class="director-select2" name="director" required id="id_director">
-                                        <option value="" selected>---------</option>
-
+                                        {% for di in d %}
+                                        <option value="{{ di.id }}" >{{ di.name }}</option>
+                                        {% endfor %}
                                     </select>
 
                                     <a class="related-widget-wrapper-link change-related" id="change_id_director"

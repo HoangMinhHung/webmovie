@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from .forms import MovieForm
+from director.models import Director
 # Create your views here.
 
 
@@ -20,7 +21,8 @@ class RatingMovie(View):
 class AddMovie(View):
     def get(self, request):
         a = MovieForm()
-        return render(request, "film/add.html", {'a': a})
+        d = Director.objects.all()
+        return render(request, "film/add.html", {"d" : d})
 
     def post(self, request):
         return
