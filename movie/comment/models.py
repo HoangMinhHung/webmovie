@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from movie.user.models import MovieUser
+from user.models import MovieUser
 
 
 class Comment(models.Model):
