@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'category',
     'type',
     'film',
+    'episode',
     'comment',
     'cast',
 ]
