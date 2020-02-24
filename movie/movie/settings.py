@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'director',
     'category',
     'type',
-    'review',
+    'film',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +128,7 @@ AUTH_USER_MODEL = 'user.MovieUser'
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATIC_ROOT ='static'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

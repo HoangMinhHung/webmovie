@@ -30,7 +30,6 @@ urlpatterns = [
     path('actor/', include('actor.urls')),
     path('director/', include('director.urls')),
     path('category/', include('category.urls')),
-    path('review/', include('review.urls')),
     path('password-reset/',
         auth_views.PasswordResetView.as_view(template_name='user/password_reset.html'),
         name='password_reset'),
@@ -43,6 +42,8 @@ urlpatterns = [
     path('password-reset-complete/',
         auth_views.PasswordResetCompleteView.as_view(template_name='user/password_reset_complete.html'),
         name='password_reset_complete'),
+    path('film/', include('film.urls')),
+    path('type/', include('type.urls')),
 ]
 
 if settings.DEBUG:

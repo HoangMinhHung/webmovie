@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{director.name}}</title>
-</head>
-<body>
-    <div class="container">
+{% extends 'user/base.html' %}
+{% block content %}
         <h3>{{director.name}}</h3>
         <p>Ngay sinh: {{director.dob}}</p>
         <p>Quoc tich: {{director.nationality}}</p>
-    </div>
-</body>
-</html>
+{% endblock %}
