@@ -29,6 +29,7 @@ urlpatterns = [
     path('category/', include('category.urls')),
     path('film/', include('film.urls')),
     path('type/', include('type.urls')),
+    path('comment/', include('comment.urls'))
 ]
 
 if settings.DEBUG:
