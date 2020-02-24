@@ -1,0 +1,31 @@
+{%  extends 'user/base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{form.title.id_for_label}}">Title</label>
+          <input type="text" required name="title"  id="{{form.title.id_for_label}}" class="form-control" placeholder="Nhap Title">
+        </div>
+        <div class="form-group">
+          <label for="{{form.description.id_for_label}}">description</label>
+          <textarea required name="description" id="{{form.description.id_for_label}}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="{{form.movie_url.id_for_label}}">movie url</label>
+          <input type="text" required name="movie_url" id="{{form.movie_url.id_for_label}}" class="form-control" placeholder="movie_url">
+        </div>
+        <div class="form-group">
+          <label for="{{form.image_url.id_for_label}}">image_url</label>
+          <input type="text" required name="image_url"  id="{{form.image_url.id_for_label}}" class="form-control" placeholder="Nhap image_url">
+        </div>
+{#        <div class="form-group">#}
+{#          <label for="{{form.director.id_for_label}}">director</label>#}
+{#          <input type="text" required name="director"  id="{{form.director.id_for_label}}" class="form-control" placeholder="Nhap director">#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#          <label for="{{form.title.id_for_label}}">Title</label>#}
+{#          <input type="text" required name="title"  id="{{form.title.id_for_label}}" class="form-control" placeholder="Nhap Title">#}
+{#        </div>#}
+        <button class="btn btn-primary" type="submit">Them moi</button>
+    </form>
+{% endblock content %}
