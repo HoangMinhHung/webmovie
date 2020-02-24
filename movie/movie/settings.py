@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'type',
     'film',
     'episode',
+    'comment',
 ]
 
 MIDDLEWARE = [
