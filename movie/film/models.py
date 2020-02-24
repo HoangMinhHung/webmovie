@@ -13,7 +13,7 @@ class Movie(models.Model):
     movie_url = models.CharField(max_length=255)
     image_url = models.CharField(max_length=255)
     director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True)
-    # actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True)
+    actor = models.ForeignKey(Actor, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
 
