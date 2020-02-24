@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
+
+from . import forms
 from .forms import MovieForm
 from director.models import Director
 # Create your views here.
+from category.models import Category
+
+from type.models import Type
 
 
 class RatingMovie(View):
@@ -21,8 +26,13 @@ class RatingMovie(View):
 class AddMovie(View):
     def get(self, request):
         a = MovieForm()
-        d = Director.objects.all()
-        return render(request, "film/add.html", {"d" : d})
+        director = Director.objects.all()
+        category = Category.objects.all()
+        type = Type.objects.all()
+        return render(request, "film/add.html", {"director" : director, "category":category, "type":type})
 
     def post(self, request):
-        return
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
