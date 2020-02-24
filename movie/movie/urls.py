@@ -44,6 +44,7 @@ urlpatterns = [
         name='password_reset_complete'),
     path('film/', include('film.urls')),
     path('type/', include('type.urls')),
+    path('comment/', include('comment.urls'))
 ]
 
 if settings.DEBUG:
