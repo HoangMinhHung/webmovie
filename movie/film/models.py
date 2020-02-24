@@ -16,11 +16,16 @@ class Movie(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return self.title
+
 
 class Review(models.Model):
     star = models.IntegerField(max_length=1, null=False)
     user = models.ForeignKey(MovieUser, on_delete=models.SET_NULL, null=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+
 
 
 
