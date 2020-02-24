@@ -1,9 +1,15 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views import View
+
 from .forms import DirectorAddForm
 from .models import Director
 
+
 # Create your views here.
+
+
+
 
 
 def add(request):
@@ -28,7 +34,6 @@ def edit(request, pk):
             return HttpResponseRedirect("/director")
     return render(request, 'director/edit.html', {"director": director})
 
-
 def list(request):
     directors = Director.objects.all()
     return render(request, 'director/view.html', {"directors": directors})
@@ -52,4 +57,3 @@ def search(request):
         keyword = form["search"]
         directors = Director.objects.filter(name__contains=keyword)
         return render(request, 'director/view.html', {"directors": directors})
-
