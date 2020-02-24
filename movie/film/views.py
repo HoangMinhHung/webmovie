@@ -6,11 +6,11 @@ from django.views import View
 
 class RatingMovie(View):
     def get(self, request):
-        return render(request, 'review/rating.html')
+        return render(request, 'film/rating.html')
 
     def post(self, request):
         value = int(request.POST['get_star'])
         if 0 < value <= 5:
             print(value)
             return HttpResponse("You voted %d star" % (value))
-        return render(request, 'review/rating.html')
+        return render(request, 'film/rating.html')
