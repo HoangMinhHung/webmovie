@@ -159,7 +159,7 @@
                                 <label class="required" for="id_director">Director:</label>
 
                                 <div class="related-widget-wrapper">
-                                    <select  name="director" required id="id_director">
+                                    <select  class="director-select2" name="director" required id="id_director">
                                         <option value="" selected>---------</option>
 
                                     </select>
@@ -184,41 +184,6 @@
 
                         </div>
 
-                        <div class="form-row field-actor">
-
-
-                            <div>
-
-
-                                <label class="required" for="id_actor">Actor:</label>
-
-                                <div class="related-widget-wrapper">
-                                    <select class="js-example-basic-single" name="actor" required id="id_actor">
-                                        <option value="" selected>---------</option>
-<option value="AL">Alabama</option>
-  <option value="WY">Wyoming</option>
-                                    </select>
-
-                                    <a class="related-widget-wrapper-link change-related" id="change_id_actor"
-                                       data-href-template="/admin/actor/actor/__fk__/change/?_to_field=id&amp;_popup=1"
-                                       title="Change selected actor"><img src="/static/admin/img/icon-changelink.svg"
-                                                                          alt="Change"></a><a
-                                        class="related-widget-wrapper-link add-related" id="add_id_actor"
-                                        href="/admin/actor/actor/add/?_to_field=id&amp;_popup=1"
-                                        title="Add another actor"><img src="/static/admin/img/icon-addlink.svg"
-                                                                       alt="Add"></a><a
-                                        class="related-widget-wrapper-link delete-related" id="delete_id_actor"
-                                        data-href-template="/admin/actor/actor/__fk__/delete/?_to_field=id&amp;_popup=1"
-                                        title="Delete selected actor"><img src="/static/admin/img/icon-deletelink.svg"
-                                                                           alt="Delete"></a>
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
                         <div class="form-row field-category">
 
 
@@ -228,7 +193,7 @@
                                 <label class="required" for="id_category">Category:</label>
 
                                 <div class="related-widget-wrapper">
-                                    <select name="category" required id="id_category">
+                                    <select class="category-select2" name="category" required id="id_category">
                                         <option value="" selected>---------</option>
 
                                     </select>
@@ -262,7 +227,7 @@
                                 <label class="required" for="id_type">Type:</label>
 
                                 <div class="related-widget-wrapper">
-                                    <select name="type" required id="id_type">
+                                    <select class="type-select2" name="type" required id="id_type">
                                         <option value="" selected>---------</option>
 
                                     </select>

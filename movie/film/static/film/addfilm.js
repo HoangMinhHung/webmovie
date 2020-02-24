@@ -1,3 +1,12 @@
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+    $('.director-select2').select2();
+});
+$(document).ready(function() {
+    $('.actor-select2').select2();
+});
+$(document).ready(function() {
+    $('.type-select2').select2();
+});
+$(document).ready(function() {
+    $('.category-select2').select2();
 });
