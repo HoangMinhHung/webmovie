@@ -7,3 +7,6 @@ from film.models import Movie
 class Cast(models.Model):
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.actor.name} --- {self.movie.title}"
