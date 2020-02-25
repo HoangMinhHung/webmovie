@@ -15,6 +15,7 @@ class Movie(models.Model):
     director = models.ForeignKey(Director, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
+    published = models.DateField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.title
