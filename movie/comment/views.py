@@ -9,7 +9,7 @@ from comment.forms import CommentForm
 def episode_detail(request):
     template_name = 'comment/episode_detail.html'
     episode = get_object_or_404(Episode, id=1)
-    comments = episode.comments.filter(active=True)
+    comments = episode.comments.filter(active=True)[0:2]
     new_comment = None
     # Comment posted
     if request.method == 'POST':
