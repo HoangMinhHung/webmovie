@@ -1,0 +1,54 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block load_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'film/rating.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+{% endblock load_css %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4">
+            <center><img class="img-thumbnail" src="{{ movie.image_url }}">
+                <div>
+                    <button type="button" class="btn btn-success">Download</button>
+                    <button type="button" class="btn btn-info">Trailer</button>
+                    <button type="button" class="btn btn-danger">Xem phim</button>
+                </div>
+            </center>
+
+        </div>
+        <div class="col-sm-8">
+            <div class="border border-dark p-3">
+                <a href="{{ movie.id }}"><h3 class="text-warning">{{movie.title}}</h3></a>
+                <p>Đạo diễn: {{ movie.director.name }}</p>
+                <p>Ngày khởi chiếu: {{ movie.published }}</p>
+                <p>Thể loại: {{ movie.category.name }}, {{ movie.type.name }}</p>
+            </div>
+            <div class="border border-dark p-3 mt-2">
+                <span style="font-size: large">Đánh giá phim </span><small>({{ count }} lượt)</small></span>
+                <div class="star-rating">
+                    <span class="fa fa-star-o" data-rating="1"></span>
+                    <span class="fa fa-star-o" data-rating="2"></span>
+                    <span class="fa fa-star-o" data-rating="3"></span>
+                    <span class="fa fa-star-o" data-rating="4"></span>
+                    <span class="fa fa-star-o" data-rating="5"></span>
+                    <input type="hidden" name="show_star" class="rating-value" value="{{ rate }}">
+                    <form id="star_form" action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="get_star" class="rating-value" value="{{rate}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+{#        <iframe height="421" width="748" src="{{ movie.movie_url }}"></iframe>#}
+{#        <iframe width="748" height="421" src="https://www.youtube.com/embed/AxLNSJOwXxk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
+    </div>
+{% endblock %}
+
+{% block load_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'film/rating.js' %}"></script>
+{% endblock %}
