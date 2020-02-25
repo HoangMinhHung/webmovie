@@ -19,12 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user import views as user_views
-from film import views as film_view
+from film import views as film_views
+from episode import views as episode_views
 
 urlpatterns = [
     path(
         'admin/film/movie/add/',
-        film_view.AddMovie.as_view(),
+        film_views.AddMovie.as_view(),
         name='add_film',
     ),
     path('admin/', admin.site.urls),
