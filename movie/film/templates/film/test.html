@@ -3,16 +3,14 @@
 
 <head>
     <title>Xem phim</title>
-
-
-    <link rel="canonical" href="http://Animehay.tv/phim/van-gioi-tien-tung-tap-116-e92344.html" />#}
+    <link rel="canonical" href="http://Animehay.tv/phim/van-gioi-tien-tung-tap-116-e92344.html" />
     <link rel="icon" href="http://i.imgur.com/SQ5D74B.png" />
     <meta charset="utf-8">
     <meta property="og:locale" content="vi_VN" />
     <link href="https://fonts.googleapis.com/css?family=Pridi|Roboto" rel="stylesheet">
     <link href="http://Animehay.tv/themes/AH_1.2/all/css/styleweb.css?v=4.9.5" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="referrer" content="no-referrer" />
     <script src="http://Animehay.tv/themes/AH_1.2/all/js/jwplayer.js?v=1.9.8"></script>
     <script type="text/javascript">
@@ -47,7 +45,7 @@
                     <div id="ah-cat">
                         <div class="ah-menu ah-clear-both">
                             <ul class="nav">
-                                <li class="ah-text-logo ah-float-left"><a href="/">Anime<span class="ah-tls">HAY</span></a>
+                                <li class="ah-text-logo ah-float-left"><a href="/">Movie<span class="ah-tls">KDH</span></a>
                                 </li>
                                 <li class="ah-lsm ah-float-right" onClick="menuDropdown(this)">
                                     <a class="non-routed" href="#">Danh mục</a>
@@ -188,6 +186,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
         </header>
 
         <div id="ah-container" class="ah-clear-both">
@@ -207,8 +207,6 @@
                 }
             </script>
 
-            <script type="text/javascript" src="//ss.yomedia.vn/js/yomedia-sdk.js?v=3" id="s-c58c60526b5a4b26b79a6c4d457c47ab"></script>
-            <!--<script type="text/javascript" src="//ss.yomedia.vn/js/yomedia-sdk.js?v=3" id="s-b6ad2faebac44a0db36f4a8157bbd96e"></script>-->
             <div class="ah-bg-bd ah-pd" style="
     text-align: center;
 ">
@@ -293,6 +291,46 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <div class="col-md-12 card mb-4  mt-3 ">
+                        <div class="card-body">
+                            <!-- comments -->
+                            <h2>{{ comments.count }} comments</h2>
+
+                            {% for comment in comments %}
+                                <div class="comments" style="padding: 10px;">
+                                    <p class="font-weight-bold">
+                                        {{ comment.user.username }}
+                                        <span class=" text-muted font-weight-normal">
+              {{ comment.date }}
+            </span>
+                                    </p>
+                                    {{ comment.content | linebreaks }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-12 card mb-4  mt-3 ">
+                        <div class="card-body">
+                            {% if new_comment %}
+                                <div class="alert alert-success" role="alert">
+                                    Your comment is awaiting moderation
+                                </div>
+                            {% else %}
+                                <h3>Leave a comment</h3>
+                                <form method="post" style="margin-top: 1.3em;">
+                                    {#                            {{ comment_form.as_p }}#}
+                                    <div class="form-group">
+                                        <label for="{{ comment_form.content.id_for_label }}">Comment:</label>
+                                        <textarea name="content" class="form-control" rows="5" id="{{ comment_form.content.id_for_label }}" ></textarea>
+                                    </div>
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
                 <div class="ah-wf-footer">
 
                     <script type="text/javascript">
@@ -342,7 +380,10 @@
                 arfAsync.push("juupdmyv"); // code ADMICRO Top_Banner MOBILE
             }
         </script>
-        <script type="text/javascript" src="//ss.yomedia.vn/js/yomedia-sdk.js?v=3" id="s-2bb7ea7f36db404aa4151f31b9a2c2ad"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
