@@ -29,20 +29,25 @@ class AddMovie(View):
         form = MovieForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/admin/film/movie")
 
 
 def index(request):
     movies = Movie.objects.all()
     return render(request, 'film/index.html', {"movies": movies})
 
+
 class RatingMovie(View):
     def get(self, request, pk):
         movie = Movie.objects.get(pk=pk)
         reviews = Review.objects.filter(movie__id = pk)
         ave = reviews.aggregate(Avg('star')).get("star__avg")
+        count = reviews.count()
+        if ave is None:
+            ave = 0
+            count = 0
         # print(ave)
-        return render(request, 'film/movie_detail.html', {"movie": movie, "count": reviews.count(), "rate":round(ave)})
+        return render(request, 'film/movie_detail.html', {"movie": movie, "count": count, "rate": round(ave)})
 
     def post(self, request, pk):
         value = int(request.POST['get_star'])
