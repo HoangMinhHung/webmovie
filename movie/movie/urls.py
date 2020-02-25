@@ -19,10 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user import views as user_views
-
-
+from film import views as film_view
 
 urlpatterns = [
+    path(
+        'admin/film/movie/add/',
+        film_view.AddMovie.as_view(),
+        name='add_film',
+    ),
     path('admin/', admin.site.urls),
     path('', user_views.home, name='home'),
     path('register/', user_views.register, name='register'),
