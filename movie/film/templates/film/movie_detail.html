@@ -7,15 +7,15 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-sm-4">
-            <center><img class="img-thumbnail" src="{{ movie.image_url }}">
+        <div class="col-sm-4 border border-dark p-3">
+            <center>
+                <img class="img-thumbnail " style="height: 20rem;" src="{{ movie.image_url }}">
                 <div>
                     <button type="button" class="btn btn-success">Download</button>
                     <button type="button" class="btn btn-info">Trailer</button>
-                    <button type="button" class="btn btn-danger">Xem phim</button>
+                    <a href="{{ movie.id }}/{{ movie.movie_url }}"><button type="button" class="btn btn-danger">Xem phim</button></a>
                 </div>
             </center>
-
         </div>
         <div class="col-sm-8">
             <div class="border border-dark p-3">
@@ -42,7 +42,10 @@
         </div>
     </div>
     <div class="row">
-
+        <div class="col-sm-12 border border-dark p-3 mt-3">
+            <h4>NỘI DUNG PHIM</h4>
+            {{ movie.description }}
+        </div>
 {#        <iframe height="421" width="748" src="{{ movie.movie_url }}"></iframe>#}
 {#        <iframe width="748" height="421" src="https://www.youtube.com/embed/AxLNSJOwXxk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
     </div>

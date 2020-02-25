@@ -3,11 +3,11 @@
 {% block content %}
 <div class="row">
 {% for movie in movies %}
-    <div class="col-sm-2">
-        <div class="card" style="width: 10rem; height: 15rem;">
-            <img class="card-img-top" src="{{movie.image_url}}" alt="Card image cap" style="height: 60%;">
+    <div class="col-sm-2 m-3">
+        <div class="card" style="width: 10rem; height: 20rem;">
+            <img class="card-img-top" src="{{movie.image_url}}" alt="Card image cap" style="height: 70%;">
             <div class="card-body">
-                <p class="card-text"><a href="{{movie.id}}"> {{movie.title}}</a><span class="badge badge-danger">New</span></p>
+                <p class="card-text"><a href="{{movie.id}}"> {{movie.title}}</a></p>
             </div>
         </div>
     </div>

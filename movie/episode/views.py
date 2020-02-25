@@ -5,6 +5,9 @@ from film.models import Movie
 from .forms import EpisodeAddForm
 
 # Create your views here.
+from .models import Episode
+
+
 class EpisodeAddView(View):
     def get(self, request):
         form = EpisodeAddForm()
@@ -18,8 +21,12 @@ class EpisodeAddView(View):
         return HttpResponse("khong add dc")
 
 
-def watch(request):
-    return render(request, 'episode/episode_watch.html')
+def watch(request, pk1, pk2):
+    # episodes = Episode.objects.get(name=pk2)
+    # print(episodes)
+    episode = Episode.objects.filter(movie__id = pk1, name=pk2)[0]
+    print(episode.episode_url)
+    return render(request, 'episode/episode_watch.html', {"episode": episode})
 
 '''
 def add(request):
