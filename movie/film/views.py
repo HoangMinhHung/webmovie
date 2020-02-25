@@ -36,3 +36,7 @@ class AddMovie(View):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/")
+
+
+def index(request):
+    return render(request, 'film/test.html')
