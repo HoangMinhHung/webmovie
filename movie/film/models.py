@@ -28,7 +28,3 @@ class Review(models.Model):
 
 
 
-
-
-
-
