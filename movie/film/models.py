@@ -5,7 +5,6 @@ from category.models import Category
 from type.models import Type
 from user.models import MovieUser
 # Create your models here.
-from episode.models import Episode
 
 
 class Movie(models.Model):
@@ -25,21 +24,6 @@ class Review(models.Model):
     star = models.IntegerField(max_length=1, null=False)
     user = models.ForeignKey(MovieUser, on_delete=models.SET_NULL, null=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-
-
-class Comment(models.Model):
-    content = models.TextField()
-    date = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(MovieUser, on_delete=models.SET_NULL, null=True)
-    episode = models.ForeignKey(Episode, on_delete=models.CASCADE, related_name="comments", null=True)
-    active = models.BooleanField(default=False)
-
-    class Meta:
-        ordering = ["date"]
-
-    def __str__(self):
-        return f"Comment '{self.content}' by {self.user.username}"
-
 
 
 

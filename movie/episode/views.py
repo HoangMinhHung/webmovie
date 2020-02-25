@@ -17,6 +17,10 @@ class EpisodeAddView(View):
             return HttpResponseRedirect("/")
         return HttpResponse("khong add dc")
 
+
+def watch(request):
+    return render(request, 'episode/episode_watch.html')
+
 '''
 def add(request):
     form = EpisodeAddForm()
