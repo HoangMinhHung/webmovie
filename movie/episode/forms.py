@@ -1,8 +1,14 @@
 from django import forms
-from .models import Episode
-from film.models import Movie
+from .models import Episode, Comment
+
 
 class EpisodeAddForm(forms.ModelForm):
     class Meta:
         model = Episode
-        fields = ['name', 'link',]
+        fields = ['name', 'episode_url', 'movie']
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content"]

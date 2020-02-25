@@ -49,6 +49,7 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='user/password_reset_complete.html'),
          name='password_reset_complete'),
     path('film/', include('film.urls')),
+    path('episode/', include('episode.urls')),
     path('type/', include('type.urls')),
     path('comment/', include('comment.urls')),
 
