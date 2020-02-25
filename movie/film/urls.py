@@ -4,6 +4,5 @@ from . import views
 app_name = "film"
 urlpatterns = [
     path('rating/', RatingMovie.as_view(), name='rating'),
-    path('add/', AddMovie.as_view(), name='add'),
     path('', views.index, name='index'),
 ]
