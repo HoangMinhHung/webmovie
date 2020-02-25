@@ -28,6 +28,11 @@ urlpatterns = [
         film_views.AddMovie.as_view(),
         name='add_film',
     ),
+    path(
+        'admin/episode/episode/add/',
+        episode_views.EpisodeAddView.as_view(),
+        name='add_episode',
+    ),
     path('admin/', admin.site.urls),
     path('', user_views.home, name='home'),
     path('register/', user_views.register, name='register'),
