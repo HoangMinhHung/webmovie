@@ -12,9 +12,7 @@ from category.models import Category
 from type.models import Type
 
 from .models import Movie
-
-
-
+from episode.models import Episode
 
 
 class AddMovie(View):
@@ -47,6 +45,7 @@ def searchMovie(request, keyword):
 class RatingMovie(View):
     def get(self, request, pk):
         movie = Movie.objects.get(pk=pk)
+        episodes = Episode.objects.filter(movie__id = pk).order_by("-name")[0:3]
         reviews = Review.objects.filter(movie__id = pk)
         ave = reviews.aggregate(Avg('star')).get("star__avg")
         count = reviews.count()
@@ -54,7 +53,11 @@ class RatingMovie(View):
             ave = 0
             count = 0
         # print(ave)
+<<<<<<< HEAD
         return render(request, 'film/movie_detail.html', {"movie": movie, "count": count, "rate": round(ave)})
+=======
+        return render(request, 'film/movie_detail.html', {"movie": movie, "count": count, "rate": round(ave), "episodes": episodes})
+>>>>>>> b6278122995ff4ddccd574bf7b77ef155aabf88d
 
     def post(self, request, pk):
         value = int(request.POST['get_star'])

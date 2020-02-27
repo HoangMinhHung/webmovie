@@ -3,6 +3,10 @@
 {% block load_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'film/rating.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 {% endblock load_css %}
 
 {% block content %}
@@ -38,6 +42,14 @@
                         <input type="hidden" name="get_star" class="rating-value" value="{{rate}}">
                     </form>
                 </div>
+            </div>
+            <div class="border border-dark p-3 mt-2">
+                <span style="font-size: large">Tập mới nhất </span>
+                <ul class="list-group list-group-horizontal">
+                    {% for episode in episodes %}
+                        <li class="list-group-item"><a href="/film/{{ episode.movie.id }}/episode/{{ episode.name }}" class="">Tập {{ episode.name }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
