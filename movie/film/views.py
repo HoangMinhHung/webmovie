@@ -37,6 +37,13 @@ def index(request):
     return render(request, 'film/index.html', {"movies": movies})
 
 
+def searchMovie(request, keyword):
+    movies = Movie.objects.filter(title__icontains=keyword)
+    # if movies is None:
+
+    return render(request, '', {'movies': movies})
+
+
 class RatingMovie(View):
     def get(self, request, pk):
         movie = Movie.objects.get(pk=pk)
