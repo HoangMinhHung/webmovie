@@ -4,11 +4,30 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.views import View
 from film.models import Movie
+import json
 from django.http import HttpResponse
 
 # Create your views here.
+
+
+def autocompleteModel(request):
+    if request.is_ajax():
+        keyword = request.GET['term']
+        movies = Movie.objects.filter(title__icontains=keyword)
+        results = []
+        print(keyword)
+        for r in movies:
+            results.extend([r.title, r.movie_url])
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+
 def home(request):
     return render(request, 'user/base.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -20,6 +39,7 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'user/register.html', {'form': form})
+
 
 @login_required
 def profile(request):
