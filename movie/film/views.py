@@ -53,11 +53,7 @@ class RatingMovie(View):
             ave = 0
             count = 0
         # print(ave)
-<<<<<<< HEAD
-        return render(request, 'film/movie_detail.html', {"movie": movie, "count": count, "rate": round(ave)})
-=======
         return render(request, 'film/movie_detail.html', {"movie": movie, "count": count, "rate": round(ave), "episodes": episodes})
->>>>>>> b6278122995ff4ddccd574bf7b77ef155aabf88d
 
     def post(self, request, pk):
         value = int(request.POST['get_star'])

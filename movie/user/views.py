@@ -4,10 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.views import View
 from film.models import Movie
-<<<<<<< HEAD
-=======
 import json
->>>>>>> b6278122995ff4ddccd574bf7b77ef155aabf88d
 from django.http import HttpResponse
 
 # Create your views here.
