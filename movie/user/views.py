@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.views import View
+from film.models import Movie
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -33,3 +36,10 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
     context = {'u_form': u_form, 'p_form': p_form,}
     return render(request, 'user/profile.html', context)
+
+
+class Search(View):
+    def get(self, request):
+        keyword = request.GET['keyword']
+        movies = Movie.objects.filter(title__icontains=keyword)
+        return render(request, 'user/base.html', {'movies': movies, 'keyword': keyword}, )
