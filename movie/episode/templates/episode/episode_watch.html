@@ -278,7 +278,7 @@
                     }
                 </script>
                 <div class="ah-wf-title">
-                    <h1><a href="http://Animehay.tv/phim/van-gioi-tien-tung-f2615.html" title="Vạn Giới Tiên Tung">Vạn Giới Tiên Tung</a> Tập 116</h1>
+                    <h1><a href="/film/{{ episode.movie.id }}" title="Vạn Giới Tiên Tung">{{ episode.movie.title }}</a> Tập {{ episode.name }}</h1>
                 </div>
             </div>
             <div class="ah-wf-body">
@@ -286,8 +286,9 @@
 
                     <div class="ah-le-server ah-le-fs35"><span>Tổng Hợp</span></div>
                     <ul>
-                        <li><a href="http://Animehay.tv/phim/van-gioi-tien-tung-tap-1-e62862.html" class="">1</a></li>
-
+                        {% for episode in episodes %}
+                        <li><a href="/film/{{ episode.movie.id }}/episode/{{ episode.name }}" class="">Tập {{ episode.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -312,22 +313,22 @@
                 </div>
                 <div class="col-md-12 card mb-4  mt-3 ">
                     <div class="card-body">
-                        {% if new_comment %}
-                            <div class="alert alert-success" role="alert">
-                                Your comment is awaiting moderation
-                            </div>
-                        {% else %}
+{#                        {% if new_comment %}#}
+{#                            <div class="alert alert-success" role="alert">#}
+{#                                Your comment is awaiting moderation#}
+{#                            </div>#}
+{#                        {% else %}#}
                             <h3>Leave a comment</h3>
                             <form method="post" style="margin-top: 1.3em;">
                                 {#                            {{ comment_form.as_p }}#}
                                 <div class="form-group">
-                                    <label for="{{ comment_form.content.id_for_label }}">Comment:</label>
+                                    <label for="{{ comment_form.content.id_for_label }}">Bình luận:</label>
                                     <textarea name="content" class="form-control" rows="5" id="{{ comment_form.content.id_for_label }}" ></textarea>
                                 </div>
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+                                <button type="submit" class="btn btn-primary  btn-lg">Bình luận</button>
                             </form>
-                        {% endif %}
+{#                        {% endif %}#}
                     </div>
                 </div>
             </div>
