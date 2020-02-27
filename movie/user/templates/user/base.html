@@ -35,11 +35,7 @@
           <form class="form-inline my-2 my-lg-0" action="/search/" id="search-form"  method="get">
               <div class="dropdown">
                       {% csrf_token %}
-<<<<<<< HEAD
-                    <input name="keyword" id="input-search" class="form-control mr-sm-2" value="{{ keyword }}" type="text" placeholder="Search" aria-label="Search" >
-=======
                     <input  name="txtSearch" id="txtSearch" class="form-control mr-sm-2"  type="text"  placeholder="Search" aria-label="Search" >
->>>>>>> b6278122995ff4ddccd574bf7b77ef155aabf88d
                     <button id="btn-search" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                     <div id="myDropdown" class="dropdown-content" >
                         {% for mv in movies %}
