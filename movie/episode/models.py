@@ -18,7 +18,7 @@ class Comment(models.Model):
     date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(MovieUser, on_delete=models.SET_NULL, null=True)
     episode = models.ForeignKey(Episode, on_delete=models.CASCADE, related_name="comments", null=True)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["date"]
