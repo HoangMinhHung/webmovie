@@ -7,15 +7,14 @@ from film.models import Movie
 import json
 from django.http import HttpResponse
 
+
 # Create your views here.
 
 
 def autocompleteModel(request):
     if request.is_ajax():
         keyword = request.POST.get('txt1')
-        print(keyword)
         movies = Movie.objects.filter(title__icontains=keyword)
-        print(movies)
         results = []
         for mv in movies:
             dict = {mv.title: mv.movie_url}
@@ -56,7 +55,7 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-    context = {'u_form': u_form, 'p_form': p_form,}
+    context = {'u_form': u_form, 'p_form': p_form, }
     return render(request, 'user/profile.html', context)
 
 
