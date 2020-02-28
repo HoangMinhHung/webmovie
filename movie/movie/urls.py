@@ -58,7 +58,6 @@ urlpatterns = [
     path('film/', include('film.urls')),
     path('episode/', include('episode.urls')),
     path('type/', include('type.urls')),
-    path('comment/', include('comment.urls')),
     # path('', include('film.urls'), name='home'),
 ]
 

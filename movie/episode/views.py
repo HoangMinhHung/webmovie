@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.core import serializers
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views import View
 from film.models import Movie
 from .forms import EpisodeAddForm, CommentForm
-
+import json
 # Create your views here.
 from .models import Episode
 
@@ -27,27 +28,47 @@ def watch(request, pk1, pk2):
     # print(episodes)
     episodes = Episode.objects.filter(movie__id=pk1)
     episode = Episode.objects.filter(movie__id=pk1, name=pk2)[0]
-    print(episode)
-    comments = episode.comments.filter(active=True)
+    # print(episode)
+    comments = episode.comments.filter(active=True).order_by("-date")
     new_comment = None
     # Comment posted
-    if request.method == 'POST':
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            # Create Comment object but don't save to database yet
-            new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
-            new_comment.episode = episode
-            user = request.user
-            new_comment.user = user
-            # Save the comment to the database
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
+    # if request.method == 'POST':
+    #     comment_form = CommentForm(data=request.POST)
+    #     if comment_form.is_valid():
+    #         # Create Comment object but don't save to database yet
+    #         new_comment = comment_form.save(commit=False)
+    #         # Assign the current post to the comment
+    #         new_comment.episode = episode
+    #         user = request.user
+    #         new_comment.user = user
+    #         # Save the comment to the database
+    #         # new_comment.save()
+    # else:
+    #     comment_form = CommentForm()
     return render(request, 'episode/episode_watch.html',
                   {"episode": episode, "episodes": episodes, 'comments': comments,
-                   'new_comment': new_comment,
-                   'comment_form': comment_form})
+                   'new_comment': new_comment}
+                   # 'comment_form': comment_form}
+                )
+
+
+def add_comment(request):
+    result = "False"
+    # print("why")
+    if request.method == "POST":
+        episode_id = request.POST["episode_id"]
+        # print(episode_id)
+        episode = get_object_or_404(Episode, id=episode_id)
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.episode = episode
+            new_comment.user = request.user
+            new_comment.save()
+            result = "True"
+            print(new_comment.date)
+            comment = serializers.serialize("json", [new_comment])
+    return JsonResponse({"comment":comment, "user_name": new_comment.user.username})
 
 
 '''
