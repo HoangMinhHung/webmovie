@@ -12,12 +12,14 @@ from django.http import HttpResponse
 
 def autocompleteModel(request):
     if request.is_ajax():
-        keyword = request.GET['term']
-        movies = Movie.objects.filter(title__icontains=keyword)
-        results = []
+        keyword = request.POST.get('txt1')
         print(keyword)
-        for r in movies:
-            results.extend([r.title, r.movie_url])
+        movies = Movie.objects.filter(title__icontains=keyword)
+        print(movies)
+        results = []
+        for mv in movies:
+            dict = {mv.title: mv.movie_url}
+            results.append(dict)
         data = json.dumps(results)
     else:
         data = 'fail'
