@@ -32,15 +32,15 @@
         </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav mr-4">
-          <form class="form-inline my-2 my-lg-0" action="/search/" id="search-form"  method="get">
+          <form class="form-inline my-2 my-lg-0" action="/search/" id="search-form"  method="post">
+              {% csrf_token %}
               <div class="dropdown">
-                      {% csrf_token %}
-                    <input  name="txtSearch" id="txtSearch" class="form-control mr-sm-2"  type="text"  placeholder="Search" aria-label="Search" >
+                    <input  name="txt1" id="txtSearch" class="form-control mr-sm-2"  type="text"  placeholder="Search" aria-label="Search" >
                     <button id="btn-search" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                     <div id="myDropdown" class="dropdown-content" >
-                        {% for mv in movies %}
-                            <a class="dropdown-item" href="{{ movie_url }}">{{ mv.title }}</a>
-                        {% endfor %}
+{#                        {% for mv in movies %}#}
+{##}
+{#                        {% endfor %}#}
                     </div>
               </div>
           </form>
@@ -77,28 +77,60 @@
     {% block load_js %}
 
     {% endblock load_js %}
-       <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"> </script>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+{#        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>#}
+    <script src="https://code.jquery.com/jquery-3.4.1.js"  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="  crossorigin="anonymous"> </script>
+    <script  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="  crossorigin="anonymous"></script>
     <script>
-        var dataFromServer;
-     $(document).ready(function(){
-            $("#txtSearch").autocomplete({
-                source: "/ajax_calls/search/",
-                minLength: 2,
-                dataType: 'json',
-                success: function (data) {
-                    alert("A user with this username already exists.");
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
-            });
+            }
+        }
+        return cookieValue;
+    }
+        var csrftoken = getCookie('csrftoken');
+        var dataFromServer;
+        $(document).ready(function(){
+            $("#txtSearch").autocomplete({
+                source: function (request, response) {
+                    // Fetch data
+                    var form = $('#search-form');
+                    $.ajax({
+                        headers: { "X-CSRFToken": csrftoken },
+                        url: "/ajax_calls/search/",
+                        type: 'post',
+                        dataType: "json",
+                        data: form.serialize(),
+                        success: function (data) {
+                            var l = data.length
+                            for (i = 0; i < l; i++){
+                                var name = "Ha canh ben anh";
+                                var o = data[i]
+                                Object.keys(o)
+                                  .forEach(function eachKey(key) {
+                                    alert(key); // alerts name of movie
+                                    alert(o[key]); // alerts link of movie
+                                  });
+                            }
+
+                        }
+                    });
+                }
+            })
         });
         
     </script>
 
-{#    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>#}
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>#}
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="{% static 'user/search.js' %}"></script>
   </body>
