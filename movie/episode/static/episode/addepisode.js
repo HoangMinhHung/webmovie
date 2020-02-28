@@ -48,4 +48,17 @@ $(document).ready(function() {
             }
         });
     });
+
+    var pathname = window.location.pathname.split("/");
+    // alert(pathname[length]);
+    var next_episode = $('.next-episode').attr("href");
+    if (next_episode != ""){
+        pathname[pathname.length-1] = next_episode;
+        $('.next-episode').attr("href", pathname.join("/"));
+    }
+    else{
+        $('.next-episode').click(function (e) {
+            e.preventDefault();
+        });
+    }
 });
