@@ -28,8 +28,8 @@ def watch(request, pk1, pk2):
     # print(episodes)
     episodes = Episode.objects.filter(movie__id=pk1)
     episode = Episode.objects.filter(movie__id=pk1, name=pk2)[0]
-    print(episode)
-    comments = episode.comments.filter(active=True)
+    # print(episode)
+    comments = episode.comments.filter(active=True).order_by("-date")
     new_comment = None
     # Comment posted
     # if request.method == 'POST':

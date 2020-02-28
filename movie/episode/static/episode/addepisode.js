@@ -43,6 +43,7 @@ $(document).ready(function() {
                     $('#comment_section').text(comment_count + " comments");
                     $('<div class="comments" style="padding: 10px;"> <p class="font-weight-bold">' + username +'<span class=" text-muted font-weight-normal"> ' + fields["date"] + '</span> </p>'+ fields["content"] +'</div>').insertAfter('#comment_section');
                     // $().append();
+                    $('textarea').val('');
                 }
             }
         });
