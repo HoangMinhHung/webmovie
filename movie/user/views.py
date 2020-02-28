@@ -13,9 +13,7 @@ from django.http import HttpResponse
 def autocompleteModel(request):
     if request.is_ajax():
         keyword = request.POST.get('txt1')
-        print(keyword)
         movies = Movie.objects.filter(title__icontains=keyword)
-        print(movies)
         results = []
         for mv in movies:
             dict = {mv.title: mv.movie_url}
