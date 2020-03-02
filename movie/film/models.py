@@ -22,7 +22,7 @@ class Movie(models.Model):
 
 
 class Review(models.Model):
-    star = models.IntegerField(max_length=1, null=False)
+    star = models.IntegerField(null=False)
     user = models.ForeignKey(MovieUser, on_delete=models.SET_NULL, null=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
