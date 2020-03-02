@@ -34,15 +34,16 @@ class AddMovie(View):
 
 
 class FilmList(ListView):
-    paginate_by = 1
+    paginate_by = 2
     model = Movie
+    template_name = 'film/index.html'
 
-    def get(self, request):
-        movies = Movie.objects.all()
-        paginator = Paginator(movies, 1)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        return render(request, 'film/index.html', {'page_obj': page_obj})
+    # def get(self, request):
+    #     movies = Movie.objects.all()
+    #     paginator = Paginator(movies, 2)
+    #     page_number = request.GET.get('page')
+    #     page_obj = paginator.get_page(page_number)
+    #     return render(request, 'film/index.html', {'page_obj': page_obj})
 
 
 def searchMovie(request, keyword):
