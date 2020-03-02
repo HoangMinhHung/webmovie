@@ -1,7 +1,10 @@
+from django.core.paginator import Paginator
 from django.db.models import Avg
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
+from django.views.generic import ListView
+
 from .models import Review
 from . import forms
 from .forms import MovieForm, RatingForm
@@ -30,9 +33,17 @@ class AddMovie(View):
             return HttpResponseRedirect("/admin/film/movie")
 
 
-def index(request):
-    movies = Movie.objects.all()
-    return render(request, 'film/index.html', {"movies": movies})
+class FilmList(ListView):
+    paginate_by = 2
+    model = Movie
+    template_name = 'film/index.html'
+
+    # def get(self, request):
+    #     movies = Movie.objects.all()
+    #     paginator = Paginator(movies, 2)
+    #     page_number = request.GET.get('page')
+    #     page_obj = paginator.get_page(page_number)
+    #     return render(request, 'film/index.html', {'page_obj': page_obj})
 
 
 def searchMovie(request, keyword):
