@@ -7,11 +7,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'user/main.css' %}"> {% block load_css %}{% endblock load_css %}
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />#}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+            crossorigin="anonymous"></script>
+    <style>
+        .dropdown-item:hover{
+            background-color: #047afc;
+        }
+        ul li a:hover{
+            color: white;
+            text-decoration: none;
+        }
+        ul li{
+            list-style:none;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        ul li a{
+            {#background-color: #993300;#}
+            color: black;
+            display:block;
+            margin: 0px 5px;
+        }
+    </style>
+
+
 
     <title>Web Movie</title>
 </head>
@@ -87,7 +114,7 @@
         var movie = [];
         $(document).ready(function() {
             $("#txtSearch").autocomplete({
-                minLength: 3,
+                minLength: 1,
                 source: function(request, response) {
                     // Fetch data
                     var form = $('#search-form');
@@ -100,6 +127,7 @@
                         dataType: "json",
                         data: form.serialize(),
                         success: function(data) {
+                            movie = [];
                             for (i = 0; i < data.length; i++) {
                                 var o = data[i]
                                 var dict = {};
@@ -123,8 +151,8 @@
                 }
             })
             .autocomplete("instance")._renderItem = function(ul, item) {
-                ul.empty();
-                return $("<li>")
+                ul.attr("class", "dropdown-menu");
+                return $("<li class=\"dropdown-item\" style='padding: 8px 0px;'>")
                     .append("<a href='" + item.url + "'>" + item.title + "</a>")
                     .appendTo(ul)
             }
