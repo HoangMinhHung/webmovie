@@ -1,0 +1,7 @@
+{% extends "user/base.html" %}
+{% block content %}
+    <div class="alert alert-success">
+        Thank you for your email confirmation! Now you can log in to your account.
+    </div>
+    <a href="{% url 'login' %}">Sign In Now</a>
+{% endblock content %}
