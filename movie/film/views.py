@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin
-from .decorators import is_guest
+from .decorators import admin_required
 
 from .models import Review
 from . import forms
@@ -23,6 +23,8 @@ from episode.models import Episode
 
 
 class AddMovie(View):
+    @login_required(login_url='login')
+    @admin_required
     def get(self, request):
         a = MovieForm()
         director = Director.objects.all()
@@ -30,6 +32,8 @@ class AddMovie(View):
         type = Type.objects.all()
         return render(request, "film/add.html", {"director": director, "category": category, "type": type})
 
+    @login_required(login_url='login')
+    @admin_required
     def post(self, request):
         form = MovieForm(request.POST)
         if form.is_valid():
@@ -50,8 +54,6 @@ class FilmList(ListView):
     #     return render(request, 'film/index.html', {'page_obj': page_obj})
 
 
-# @login_required
-@is_guest
 def searchMovie(request, keyword):
     user = request.user
     print(user)
@@ -61,38 +63,29 @@ def searchMovie(request, keyword):
     # return render(request, '', {'movies': movies})
 
 
-class RatingMovie(UserPassesTestMixin, View):
+class RatingMovie(View):
     def get(self, request, pk):
-        try:
-            movie = Movie.objects.get(pk=pk)
-            episodes = Episode.objects.filter(movie__id=pk).order_by("-name")[0:3]
-            reviews = Review.objects.filter(movie__id=pk)
-            ave = reviews.aggregate(Avg('star')).get("star__avg")
-            count = reviews.count()
-            if ave is None:
-                ave = 0
-                count = 0
-            # print(ave)
-            return render(request, 'film/movie_detail.html',
-                          {"movie": movie, "count": count, "rate": round(ave), "episodes": episodes})
-        except PermissionDenied:
-            return HttpResponseRedirect("/")
+        movie = Movie.objects.get(pk=pk)
+        episodes = Episode.objects.filter(movie__id=pk).order_by("-name")[0:3]
+        reviews = Review.objects.filter(movie__id=pk)
+        ave = reviews.aggregate(Avg('star')).get("star__avg")
+        count = reviews.count()
+        if ave is None:
+            ave = 0
+            count = 0
+        # print(ave)
+        return render(request, 'film/movie_detail.html',
+                      {"movie": movie, "count": count, "rate": round(ave), "episodes": episodes})
 
+    @login_required(login_url='login')
     def post(self, request, pk):
-        try:
-            value = int(request.POST['get_star'])
-            review = Review()
-            if 0 < value <= 5:
-                # print(value)
-                review.star = value
-                review.user = request.user
-                review.movie = Movie.objects.get(pk=pk)
-                review.save()
-                return HttpResponseRedirect("/film/" + str(pk))
-            return render(request, 'film/rating.html')
-        except PermissionDenied as ex:
-            print(ex.get_permission_denied_message())
-            return HttpResponseRedirect("/")
-
-    def test_func(self):
-        return self.request.user.role.name == 'admin'
+        value = int(request.POST['get_star'])
+        review = Review()
+        if 0 < value <= 5:
+            # print(value)
+            review.star = value
+            review.user = request.user
+            review.movie = Movie.objects.get(pk=pk)
+            review.save()
+            return HttpResponseRedirect("/film/" + str(pk))
+        return render(request, 'film/rating.html')
