@@ -80,6 +80,30 @@
         </div>
     </nav>
 
+    <div class="row">
+        {#        <div class="col-sm-2">#}
+        {#            <button class="col-sm-2" type="button" class="btn btn-link">Thể loại</button>#}
+        {#        </div>#}
+        {#        <div class="col-sm-1"></div>#}
+        <a class="col-sm-4 text-center header_link" href="/type/phim-le">
+            Phim lẻ
+        </a>
+        <a class="col-sm-4 text-center header_link" href="/type/phim-bo">
+            Phim bộ
+        </a>
+        <div class="dropdown col-sm-4">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+        {#        <div class="col-sm-2"></div>#}
+    </div>
+
     <main role="main" class="container">
         {% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }}">

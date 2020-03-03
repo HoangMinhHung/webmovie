@@ -1,9 +1,11 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
 from .forms import TypeAddForm
 from .models import Type
+from film.models import Movie
 
 
 def add(request):
@@ -28,9 +30,13 @@ def edit(request, pk):
     return render(request, 'type/edit.html', {"type": type})
 
 
-def list(request):
-    types = Type.objects.all()
-    return render(request, 'type/view.html', {"types": types})
+def list(request, name):
+    split_name = " ".join(name.split("-"))
+    movies = Movie.objects.filter(type__name=split_name)
+    paginator = Paginator(movies, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'type/view.html', {'page_obj': page_obj})
 
 
 def delete(request, pk):
