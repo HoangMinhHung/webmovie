@@ -36,6 +36,22 @@
             display:block;
             margin: 0px 5px;
         }
+        .header_link{
+            text-decoration: none;
+        }
+        .header_link:hover{
+            background-color: #047afc;
+            color: white;
+            text-decoration: none;
+        }
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown>.dropdown-toggle:active {
+            /*Without this, clicking will make it sticky*/
+            pointer-events: none;
+        }
     </style>
 
 
@@ -79,6 +95,30 @@
             </div>
         </div>
     </nav>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 row">
+            <a class="col-sm-4 text-center header_link" href="/type/phim-le">
+                Phim lẻ
+            </a>
+            <a class="col-sm-4 text-center header_link" href="/type/phim-bo">
+                Phim bộ
+            </a>
+            <div class="dropdown col-sm-4">
+                <p class="text-center">Thể loại</p>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/category/phim-hanh-dong">Phim hành động</a>
+                    <a class="dropdown-item" href="/category/phim-tinh-cam">Phim tình cảm</a>
+                    <a class="dropdown-item" href="/category/phim-tam-ly">Phim tâm lý</a>
+                    <a class="dropdown-item" href="/category/phim-co-trang">Phim cổ trang</a>
+                    <a class="dropdown-item" href="/category/phim-vien-tuong">Phim viễn tưởng</a>
+                    <a class="dropdown-item" href="/category/phim-hoat-hinh">Phim hoạt hình</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
 
     <main role="main" class="container">
         {% if messages %} {% for message in messages %}

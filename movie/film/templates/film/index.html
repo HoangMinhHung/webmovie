@@ -1,42 +1,17 @@
 {% extends 'user/base.html' %}
 
 {% block load_css %}
-    <style>
-        .header_link{
-            text-decoration: none;
-        }
-        .header_link:hover{
-            background-color: #047afc;
-            color: white;
-            text-decoration: none;
-        }
-    </style>
+
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-{#        <div class="col-sm-2">#}
-{#            <button class="col-sm-2" type="button" class="btn btn-link">Thể loại</button>#}
-{#        </div>#}
-        <div class="col-sm-3"></div>
-        <a class="col-sm-2 text-center header_link" href="#">
-            Phim lẻ
-        </a>
-        <a class="col-sm-2 text-center header_link" href="#">
-            Phim bộ
-        </a>
-        <a class="col-sm-2 text-center header_link" href="#">
-            Phim mới
-        </a>
-        <div class="col-sm-3"></div>
-    </div>
     <div class="row">
         {% for movie in page_obj %}
             <div class="col-sm-2 m-3">
                 <div class="card" style="width: 10rem; height: 20rem;">
                     <img class="card-img-top" src="{{ movie.image_url }}" alt="Card image cap" style="height: 70%;">
                     <div class="card-body">
-                        <p class="card-text text-truncate "><a href="{{ movie.id }}"> {{ movie.title }}</a></p>
+                        <p class="card-text text-truncate "><a href="/film/{{ movie.id }}"> {{ movie.title }}</a></p>
                     </div>
                 </div>
             </div>
