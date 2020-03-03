@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user import views as user_views
+from film.views import FilmList
 from film import views as film_views
 from episode import views as episode_views
 
@@ -34,7 +35,7 @@ urlpatterns = [
         name='add_episode',
     ),
     path('admin/', admin.site.urls),
-    path('', user_views.home, name='home'),
+    path('', FilmList.as_view(), name='home'),
     path('', include('user.urls')),
     path('register/', user_views.register, name='register'),
     path('register-confirm/', user_views.register_confirm, name='register_confirm'),
