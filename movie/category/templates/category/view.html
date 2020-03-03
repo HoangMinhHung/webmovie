@@ -1,34 +1,42 @@
 {% extends 'user/base.html' %}
 {% block content %}
     <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <form action="{% url 'search' %}" method="post">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search..." aria-describedby="button-search" name="search">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-search">Search</button>
+        {% for movie in page_obj %}
+            <div class="col-sm-2 m-3">
+                <div class="card" style="width: 10rem; height: 20rem;">
+                    <img class="card-img-top" src="{{ movie.image_url }}" alt="Card image cap" style="height: 70%;">
+                    <div class="card-body">
+                        <p class="card-text text-truncate "><a href="/film/{{ movie.id }}"> {{ movie.title }}</a></p>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="col-sm-2"></div>
-    </div>
-    <div class="row">
-        {% for category in categories %}
-        <div class="col-sm-3">
-            <div class="card" style="width: 15rem;">
-                <div class="card-body">
-                    <p class="card-text">
-                        <a href="{{category.id}}"> {{category.name}} <span class="badge badge-warning">Hot</span></a><br>
-                        <span>Mo ta: {{category.description}}</span><br>
-                        <a href="edit/{{category.id}}"><button type="button" class="btn btn-info" >Sua</button></a>
-                        <a href="delete/{{category.id}}" onclick="return confirm('Ban co chac chan xoa the loai nay?')"><button type="button" class="btn btn-danger" >Xoa</button></a>
-                    </p>
-                </div>
             </div>
-        </div>
         {% endfor %}
+    </div>
+    <div class="fixed-bottom">
+        <center>
+
+            {#    {% if is_paginated %}#}
+
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+
+            {#    {% endif %}#}
+
+        </center>
     </div>
 {% endblock content %}

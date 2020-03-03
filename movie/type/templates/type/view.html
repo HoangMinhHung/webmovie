@@ -1,22 +1,6 @@
 {% extends 'user/base.html' %}
 {% block content %}
     <div class="row">
-        {#        <div class="col-sm-2">#}
-        {#            <button class="col-sm-2" type="button" class="btn btn-link">Thể loại</button>#}
-        {#        </div>#}
-        {#        <div class="col-sm-1"></div>#}
-        <a class="col-sm-4 text-center header_link" href="/type/phim-le">
-            Phim lẻ
-        </a>
-        <a class="col-sm-4 text-center header_link" href="/type/phim-bo">
-            Phim bộ
-        </a>
-        <a class="col-sm-4 text-center header_link" href="/type/phim-hanh-dong">
-            Phim hành động
-        </a>
-        {#        <div class="col-sm-2"></div>#}
-    </div>
-    <div class="row">
         {% for movie in page_obj %}
             <div class="col-sm-2 m-3">
                 <div class="card" style="width: 10rem; height: 20rem;">
