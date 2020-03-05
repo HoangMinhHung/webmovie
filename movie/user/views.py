@@ -39,6 +39,12 @@ def autocompleteModel(request):
 def home(request):
     return render(request, 'user/base.html')
 
+def register_confirm(request):
+    return render(request, 'user/register_confirm.html')
+def register_active_done(request):
+    return render(request, 'user/register_active_done.html')
+def register_active_fail(request):
+    return render(request, 'user/register_active_fail.html')
 
 def register(request):
     if request.method == 'POST':
@@ -60,7 +66,9 @@ def register(request):
                 mail_subject, message, to=[to_email]
             )
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            # return HttpResponse('Please confirm your email address to complete the registration')
+            # messages.warning(request, f'Please following the instruction email which has been sent to your email address to complete the registration.')
+            return redirect('register_confirm')
             # form.save()
             # messages.success(request, f'Your account has been created! You are now able to log in.')
             # return redirect('login')
@@ -80,9 +88,11 @@ def activate(request, uidb64, token):
         user.save()
         # login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return redirect('register_active_done')
     else:
-        return HttpResponse('Activation link is invalid!')
+        # return HttpResponse('Activation link is invalid!')
+        return redirect('register_active_fail')
 
 
 @login_required
