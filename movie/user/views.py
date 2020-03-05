@@ -1,5 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -26,7 +27,7 @@ def autocompleteModel(request):
         movies = Movie.objects.filter(title__icontains=keyword)
         results = []
         for mv in movies:
-            dict = {mv.title: mv.movie_url}
+            dict = {mv.title: mv.id}
             results.append(dict)
         data = json.dumps(results)
     else:
@@ -103,6 +104,14 @@ def profile(request):
 
 class Search(View):
     def get(self, request):
-        keyword = request.GET['keyword']
+        keyword = request.GET['txt1']
         movies = Movie.objects.filter(title__icontains=keyword)
         return render(request, 'user/base.html', {'movies': movies, 'keyword': keyword}, )
+
+    def post(self, request):
+        keyword = request.POST['txt1']
+        movies = Movie.objects.filter(title__icontains=keyword)
+        paginator = Paginator(movies, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'film/index.html', {'page_obj': page_obj})

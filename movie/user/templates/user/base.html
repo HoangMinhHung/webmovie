@@ -52,7 +52,7 @@
             color: #047afc;
         }
 
-        .dropdown:hover{
+        .dropdown2:hover{
             background-color: #047afc;
 
         }
@@ -121,7 +121,7 @@
             </a>
             <div class="dropdown col-sm-4">
                 <p class="text-center">Thể loại</p>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu dropdown2" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/category/phim-hanh-dong">Phim hành động</a>
                     <a class="dropdown-item" href="/category/phim-tinh-cam">Phim tình cảm</a>
                     <a class="dropdown-item" href="/category/phim-tam-ly">Phim tâm lý</a>
@@ -139,7 +139,10 @@
         <div class="alert alert-{{ message.tags }}">
             {{ message }}
         </div>
-        {% endfor %} {% endif %} {% block content %}{% endblock %}
+        {% endfor %} {% endif %}
+        {% block content %}
+
+        {% endblock %}
     </main>
 
     <!-- Optional JavaScript -->
@@ -169,6 +172,12 @@
         $(document).ready(function() {
             $("#txtSearch").autocomplete({
                 minLength: 1,
+                messages: {
+                    noResults: '',
+                    results: function(amount) {
+                        return ''
+                    }
+                },
                 source: function(request, response) {
                     // Fetch data
                     var form = $('#search-form');
@@ -207,7 +216,7 @@
             .autocomplete("instance")._renderItem = function(ul, item) {
                 ul.attr("class", "dropdown-menu");
                 return $("<li class=\"dropdown-item\" style='padding: 8px 0px;'>")
-                    .append("<a href='" + item.url + "'>" + item.title + "</a>")
+                    .append("<a href='/film/" + item.url + "'>" + item.title + "</a>")
                     .appendTo(ul)
             }
         });
